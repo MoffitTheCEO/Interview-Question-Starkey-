@@ -1,0 +1,16 @@
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Interview Question.exe
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Interview Question.deps.json
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Interview Question.runtimeconfig.json
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Interview Question.runtimeconfig.dev.json
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Interview Question.dll
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Interview Question.pdb
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.csprojAssemblyReference.cache
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.AssemblyInfoInputs.cache
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.AssemblyInfo.cs
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.dll
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.pdb
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.genruntimeconfig.cache
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Json.Net.dll
+C:\Users\Moff - it\source\repos\Interview Question\obj\Debug\netcoreapp3.1\Interview Question.csproj.CopyComplete
+C:\Users\Moff - it\source\repos\Interview Question\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

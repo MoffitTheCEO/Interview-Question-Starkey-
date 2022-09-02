@@ -2,10 +2,8 @@
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Interview_Question
 {
@@ -14,7 +12,8 @@ namespace Interview_Question
         static void Main(string[] args)
         {
             Console.WriteLine("Moffat Omuya Starkey 2022");
-            string inputData = File.ReadAllText(@"C:\Users\Moff - it\Desktop\Interview\input.json"); // Convert JSON file to string
+            string startupPath = Directory.GetCurrentDirectory() + "\\input.json";
+            string inputData = File.ReadAllText(startupPath); //(@"C:\Users\Moff - it\Desktop\Interview\input.json"); // Convert JSON file to string
             Data[] inputDataObj = JsonConvert.DeserializeObject<Data[]>(inputData); // Convert string to object
 
 
@@ -77,7 +76,7 @@ namespace Interview_Question
                 alreadyFound.Clear(); //Clear alreadyFound list for every new distinct user 
                 JTokenWriter outputWriter = new JTokenWriter();
                 outputWriter.WriteStartObject();
-                outputWriter.WritePropertyName("<" + inputDataObj[i].user + ">");
+                outputWriter.WritePropertyName("<" + distinctUser[i] + ">");
                 outputWriter.WriteStartObject();
                 for (int j = 0; j < mostCommonUserCount; j++) // For every command for the distinct user
                 {
@@ -112,11 +111,11 @@ namespace Interview_Question
                 newString = newString.Replace(">,\r\n", ">,");
                 newString = newString.Replace("     <", "<");
 
-                File.AppendAllText(@"C:\Users\Moff - it\Desktop\Interview\output.json", "\r\n" + newString);
+                File.AppendAllText("output.json", "\r\n" + newString);
             }
 
-            var lines = File.ReadAllLines(@"C:\Users\Moff - it\Desktop\Interview\output.json");
-            File.WriteAllLines(@"C:\Users\Moff - it\Desktop\Interview\output.json", lines.Skip(1).ToArray()); // Get rid of that first line of the output file (\r\n) from fist call of File.AppendAllText
+            var lines = File.ReadAllLines("output.json");
+            File.WriteAllLines("output.json", lines.Skip(1).ToArray()); // Get rid of that first line of the output file (\r\n) from fist call of File.AppendAllText
         }
     }
 
