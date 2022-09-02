@@ -17,7 +17,6 @@ namespace Interview_Question
             string inputData = File.ReadAllText(@"C:\Users\Moff - it\Desktop\Interview\input.json"); // Convert JSON file to string
             Data[] inputDataObj = JsonConvert.DeserializeObject<Data[]>(inputData); // Convert string to object
 
-            Console.WriteLine("Unique User Names: ");
 
             List<string> distinctUser = new List<string>(); //List for distinct users
             List<string> allUser = new List<string>(); // List for all users 
@@ -38,28 +37,23 @@ namespace Interview_Question
 
                 if (!isDuplicate)
                 {
-                    Console.WriteLine(inputDataObj[i].user);
-                    distinctUser.Add(inputDataObj[i].user); // Add unique users a List
+                    distinctUser.Add(inputDataObj[i].user); // Add unique users to a List
                 }
 
                 allUser.Add(inputDataObj[i].user); // store all usernames in a list
             }
             
-            var numberOfDistinctUser = distinctUser.Count;
+            var numberOfDistinctUser = distinctUser.Count; // Get number of distinct users
 
             var mostCommonUser = (allUser.GroupBy(x => x) // Get the user that has appeared the most times 
             .Select(x => new { num = x, cnt = x.Count() })
             .OrderByDescending(g => g.cnt)
             .Select(g => g.num).First());
 
-            Console.WriteLine("The most frequent number in this array is {0} has been repeated {1} times.", mostCommonUser.Key, mostCommonUser.Count());
-
-            var mostCommonUserCount = mostCommonUser.Count();
+            var mostCommonUserCount = mostCommonUser.Count(); // get how many times the most popular user hit a command
 
             string[,] commandArray = new string[numberOfDistinctUser, mostCommonUserCount];   // Create a 2d arrray to store commands for each user
             string[,] timestampArray = new string[numberOfDistinctUser, mostCommonUserCount]; // Create a 2d arrray to store timestamp for each user
-
-            List<string> alreadyFound = new List<string>(); //List for distinct users
 
             for (int i = 0; i < numberOfDistinctUser; i++) 
             {
@@ -74,35 +68,37 @@ namespace Interview_Question
                     }
                 }
             }
-            int placeholder = 0;
+
+            List<string> alreadyFound = new List<string>(); //List of commands that have been checked for specific user
+            int placeholder = 0; // Holds the element position for the element where a command was called for the first time for specific user
+
             for (int i = 0; i < numberOfDistinctUser; i++) // For every distinct user 
             {
-                alreadyFound.Clear();
+                alreadyFound.Clear(); //Clear alreadyFound list for every new distinct user 
                 JTokenWriter outputWriter = new JTokenWriter();
                 outputWriter.WriteStartObject();
                 outputWriter.WritePropertyName("<" + inputDataObj[i].user + ">");
                 outputWriter.WriteStartObject();
-                for (int j = 0; j < mostCommonUserCount; j++) // For every command or timestamp for the distinct user
+                for (int j = 0; j < mostCommonUserCount; j++) // For every command for the distinct user
                 {
-                    string currentCommand;
+                    string currentCommand; // current command we are checking
                     if ((commandArray[i, j] != null) && (!alreadyFound.Contains(commandArray[i,j]))) // Found user command 
                     {
-                        placeholder = j;
+                        placeholder = j; // save this element position for next time around
                         outputWriter.WritePropertyName("<" + commandArray[i, j] + ">");
                         outputWriter.WriteStartArray();
-                        currentCommand = commandArray[i, j];
+                        currentCommand = commandArray[i, j]; // save the current command
 
                         for (int k = j; k < mostCommonUserCount; k++) // Look for all timestamps for that user command
                         {
-                            if (commandArray[i, k] == currentCommand)
+                            if (commandArray[i, k] == currentCommand) // if command equals command we are looking for the specific user
                             {
                                 outputWriter.WriteRaw("<" + timestampArray[i, k] + ">");
-                                //j = k;
                             }
                         }
                         outputWriter.WriteEndArray();
-                        j = placeholder;
-                        alreadyFound.Add(commandArray[i, j]);
+                        j = placeholder; // start loop back at place holder to make sure every command is checked for specific user
+                        alreadyFound.Add(commandArray[i, j]); // add the command that has already been checked to exclusion list
                     }
                 }
 
@@ -120,7 +116,7 @@ namespace Interview_Question
             }
 
             var lines = File.ReadAllLines(@"C:\Users\Moff - it\Desktop\Interview\output.json");
-            File.WriteAllLines(@"C:\Users\Moff - it\Desktop\Interview\output.json", lines.Skip(1).ToArray()); // Get rid of that first line of the output file
+            File.WriteAllLines(@"C:\Users\Moff - it\Desktop\Interview\output.json", lines.Skip(1).ToArray()); // Get rid of that first line of the output file (\r\n) from fist call of File.AppendAllText
         }
     }
 
